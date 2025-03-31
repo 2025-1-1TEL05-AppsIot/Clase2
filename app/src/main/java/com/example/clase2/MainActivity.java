@@ -2,11 +2,13 @@ package com.example.clase2;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.clase2.bean.Persona;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, MainActivity3.class);
             launcher.launch(intent);
         });
+
+        registerForContextMenu((TextView) findViewById(R.id.contadorEnVista));
 
     }
 
@@ -117,6 +123,27 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         Log.d(TAG, "onresumed");
     }
+
+    /**** Context Menu ****/
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.menu_context, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item){
+        if (item.getItemId() == R.id.context_edit) {
+            Log.d("msgContextMenu", "edit");
+            return true;
+        } else if (item.getItemId() == R.id.context_delete) {
+            Log.d("msgContextMenu", "delete");
+            return true;
+        } else {
+            return super.onContextItemSelected(item);
+        }
+    }
+    /**** Context Menu ****/
 
     public void irAVentana2(View view) {
 
