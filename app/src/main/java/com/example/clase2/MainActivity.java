@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(String.valueOf(contador));
     }
 
+    /**** App Bar - Start ****/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main_act,menu);
@@ -78,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
             //Toast.makeText(this, "btn notify presionado", Toast.LENGTH_SHORT).show();
             Log.d ("msgOptAppBar", "App Bar onclik");
             View menuItemView = findViewById(R.id.notify);
+
+            /**** Popup Menu - Start ****/
             PopupMenu popupMenu =  new PopupMenu(this, menuItemView);
             popupMenu.getMenuInflater().inflate(R.menu.menu_popup, popupMenu.getMenu());
             popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -95,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             popupMenu.show();
+            /**** Popup Menu - End ****/
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -112,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "btn notify presionado", Toast.LENGTH_SHORT).show();
     }*/
 
+    /**** App Bar - End ****/
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -124,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onresumed");
     }
 
-    /**** Context Menu ****/
+    /**** Context Menu - Start ****/
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -143,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
             return super.onContextItemSelected(item);
         }
     }
-    /**** Context Menu ****/
+    /**** Context Menu - End ****/
 
     public void irAVentana2(View view) {
 
